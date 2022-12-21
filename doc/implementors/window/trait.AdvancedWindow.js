@@ -1,0 +1,5 @@
+(function() {var implementors = {
+"glutin_window":[["impl <a class=\"trait\" href=\"window/trait.AdvancedWindow.html\" title=\"trait window::AdvancedWindow\">AdvancedWindow</a> for <a class=\"struct\" href=\"glutin_window/struct.GlutinWindow.html\" title=\"struct glutin_window::GlutinWindow\">GlutinWindow</a>"]],
+"piston_window":[["impl&lt;W&gt; <a class=\"trait\" href=\"piston_window/trait.AdvancedWindow.html\" title=\"trait piston_window::AdvancedWindow\">AdvancedWindow</a> for <a class=\"struct\" href=\"piston_window/struct.PistonWindow.html\" title=\"struct piston_window::PistonWindow\">PistonWindow</a>&lt;W&gt;<span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;W: <a class=\"trait\" href=\"piston_window/trait.AdvancedWindow.html\" title=\"trait piston_window::AdvancedWindow\">AdvancedWindow</a>,</span>"]],
+"window":[]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

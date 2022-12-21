@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["OpenGL",""]],"struct":[["ParseOpenGLError","Represents an error while trying to get `OpenGL` from `&str`."]]};

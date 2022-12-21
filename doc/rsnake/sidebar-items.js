@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["HEIGHT",""],["WIDTH",""],["WINDOW_TITLE",""]],"fn":[["main",""]],"mod":[["colors",""],["draw",""],["game",""],["physics",""],["snake",""]]};

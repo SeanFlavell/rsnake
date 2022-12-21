@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["BACKGROUND","sets the colors of a game object. First three are RGB, and the last number is transparency."],["FRUIT",""],["OVERLAY",""],["SCORE",""],["SNAKE",""],["SUPFRUIT",""]]};

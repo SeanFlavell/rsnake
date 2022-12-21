@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Blend","The blend setting to use when drawing."],["Stencil","Stencil buffer settings."]],"struct":[["DrawState","Graphics draw state used for blending, clipping and stencil rendering."]]};

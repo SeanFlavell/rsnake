@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Defines vertex, constant and pipeline formats in one block."><meta name="keywords" content="rust, rustlang, rust-lang, gfx_defines"><title>gfx_defines in gfx - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../normalize.css"><link rel="stylesheet" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../ayu.css" disabled><link rel="stylesheet" href="../dark.css" disabled><link rel="stylesheet" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script defer src="sidebar-items.js"></script><script defer src="../main.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc macro"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../gfx/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../gfx/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In gfx</a></h2></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../gfx/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn"><span class="in-band">Macro <a href="index.html">gfx</a>::<wbr><a class="macro" href="#">gfx_defines</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/gfx/macros/mod.rs.html#138-188">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><div class="example-wrap"><pre class="rust macro"><code><span class="macro">macro_rules! </span>gfx_defines {
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* vertex <span class="macro-nonterminal">$name</span>:ident {
+            $( $(<span class="attribute">#[<span class="macro-nonterminal">$field_attr</span>:meta]</span>)* <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    }) =&gt; { ... };
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* constant <span class="macro-nonterminal">$name</span>:ident {
+            $( $(<span class="attribute">#[<span class="macro-nonterminal">$field_attr</span>:meta]</span>)* <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    }) =&gt; { ... };
+    (pipeline <span class="macro-nonterminal">$name</span>:ident {
+            $( <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    }) =&gt; { ... };
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* vertex <span class="macro-nonterminal">$name</span>:ident {
+            $( $(<span class="attribute">#[<span class="macro-nonterminal">$field_attr</span>:meta]</span>)* <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    } $(<span class="macro-nonterminal">$tail</span>:tt)+) =&gt; { ... };
+    ($(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* constant <span class="macro-nonterminal">$name</span>:ident {
+            $( $(<span class="attribute">#[<span class="macro-nonterminal">$field_attr</span>:meta]</span>)* <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    } $(<span class="macro-nonterminal">$tail</span>:tt)+) =&gt; { ... };
+    (<span class="macro-nonterminal">$keyword</span>:ident <span class="macro-nonterminal">$name</span>:ident {
+            $( <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$ty</span>:ty = <span class="macro-nonterminal">$e</span>:expr, )+
+    } $(<span class="macro-nonterminal">$tail</span>:tt)+) =&gt; { ... };
+}</code></pre></div>
+</div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Defines vertex, constant and pipeline formats in one block.</p>
+<h2 id="example"><a href="#example">Example</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[macro_use]
+</span><span class="kw">extern crate </span>gfx;
+
+<span class="macro">gfx_defines! </span>{
+    vertex Vertex {
+        pos: [f32; <span class="number">4</span>] = <span class="string">&quot;a_Pos&quot;</span>,
+        tex_coord: [f32; <span class="number">2</span>] = <span class="string">&quot;a_TexCoord&quot;</span>,
+    }
+     
+    constant Locals {
+        transform: [[f32; <span class="number">4</span>]; <span class="number">4</span>] = <span class="string">&quot;u_Transform&quot;</span>,
+    }
+
+    pipeline pipe {
+        vbuf: gfx::VertexBuffer&lt;Vertex&gt; = (),
+        <span class="comment">// Global buffers are added for compatibility when
+        // constant buffers are not supported.
+        </span>transform: gfx::Global&lt;[[f32; <span class="number">4</span>]; <span class="number">4</span>]&gt; = <span class="string">&quot;u_Transform&quot;</span>,
+        locals: gfx::ConstantBuffer&lt;Locals&gt; = <span class="string">&quot;Locals&quot;</span>,
+        color: gfx::TextureSampler&lt;[f32; <span class="number">4</span>]&gt; = <span class="string">&quot;t_Color&quot;</span>,
+        out_color: gfx::RenderTarget&lt;gfx::format::Rgba8&gt; = <span class="string">&quot;Target0&quot;</span>,
+        out_depth: gfx::DepthTarget&lt;gfx::format::DepthStencil&gt; = 
+            gfx::preset::depth::LESS_EQUAL_WRITE,
+    }
+}
+
+<span class="kw">impl </span>Vertex {
+    <span class="kw">fn </span>new(p: [i8; <span class="number">3</span>], tex: [i8; <span class="number">2</span>]) -&gt; Vertex {
+        Vertex {
+            pos: [p[<span class="number">0</span>] <span class="kw">as </span>f32, p[<span class="number">1</span>] <span class="kw">as </span>f32, p[<span class="number">2</span>] <span class="kw">as </span>f32, <span class="number">1.0f32</span>],
+            tex_coord: [tex[<span class="number">0</span>] <span class="kw">as </span>f32, tex[<span class="number">1</span>] <span class="kw">as </span>f32],
+        }
+    }
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>vertex_data = [
+        Vertex::new([-<span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">0</span>]),
+        Vertex::new([ <span class="number">1</span>, -<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]),
+        <span class="comment">// Add more vertices..
+    </span>];
+}</code></pre></div>
+<p><code>vertex</code> and <code>constant</code> structures defined with <code>gfx_defines!</code>
+can be extended with attributes:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attribute">#[macro_use]
+</span><span class="kw">extern crate </span>gfx;
+
+<span class="macro">gfx_defines! </span>{
+    <span class="attribute">#[derive(Default)]
+    </span>vertex Vertex {
+        pos: [f32; <span class="number">4</span>] = <span class="string">&quot;a_Pos&quot;</span>,
+        tex_coord: [f32; <span class="number">2</span>] = <span class="string">&quot;a_TexCoord&quot;</span>,
+    }
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>vertex = Vertex::default();
+    <span class="macro">assert_eq!</span>(vertex.pos[<span class="number">0</span>], <span class="number">0f32</span>);
+    <span class="macro">assert_eq!</span>(vertex.tex_coord[<span class="number">0</span>], <span class="number">0f32</span>);
+}</code></pre></div>
+<h2 id="pipe"><a href="#pipe"><code>pipe</code></a></h2>
+<p>The <code>pipeline state object</code> or <code>pso</code> can consist of the following
+<code>pso</code> components:</p>
+<ul>
+<li>A <a href="pso/buffer/type.VertexBuffer.html">vertex buffer</a> component to hold the vertices.</li>
+<li>An <a href="pso/buffer/type.InstanceBuffer.html">instance buffer</a> component.</li>
+<li>Single or multiple <a href="pso/buffer/struct.ConstantBuffer.html">constant buffer</a> components. (DX11 and OpenGL3)</li>
+<li>Single or multiple <a href="pso/buffer/struct.Global.html">global buffer</a> components.</li>
+<li>Single or multiple <a href="pso/resource/struct.Sampler.html">samplers</a>.</li>
+<li><a href="pso/target/struct.RenderTarget.html">Render</a>, <a href="pso/target/struct.BlendTarget.html">blend</a>, 
+<a href="pso/target/struct.DepthTarget.html">depth</a>, <a href="pso/target/struct.StencilTarget.html">stencil</a> targets.</li>
+<li>A <a href="pso/resource/struct.ShaderResource.html">shader resource view</a> (SRV, DX11)</li>
+<li>An <a href="pso/resource/struct.UnorderedAccess.html">unordered access view</a> (UAV, DX11, not yet implemented in the OpenGL backend)</li>
+<li>A <a href="pso/target/struct.Scissor.html">scissor</a> rectangle value (DX11)</li>
+</ul>
+<p>Structure of a <code>pipeline state object</code> can be defined freely.</p>
+<p>It should be noted however, that you can have multiple objects of everything but
+depth/stencil and scissor objects in a <code>pipeline state object</code>, which is the only
+restriction in the freedom of defining a <code>pipeline state object</code>.</p>
+<h2 id="vertex"><a href="#vertex"><code>vertex</code></a></h2>
+<p>Defines a vertex format to be passed onto a vertex buffer. Similar
+to <code>pipeline state objects</code> multiple vertex formats can be set.</p>
+<h2 id="constant"><a href="#constant"><code>constant</code></a></h2>
+<p>Defines a structure for shader constant data. This constant data
+is then appended into a constant buffer in the <code>pso</code>. Constant buffers
+are supported by DirectX 11 and OpenGL3 backend, but in OpenGL they
+are called <code>Uniform Buffer Object</code>s or <code>UBO</code>s.</p>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="gfx" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

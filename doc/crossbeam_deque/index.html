@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A concurrent work-stealing deque."><meta name="keywords" content="rust, rustlang, rust-lang, crossbeam_deque"><title>crossbeam_deque - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../normalize.css"><link rel="stylesheet" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../ayu.css" disabled><link rel="stylesheet" href="../dark.css" disabled><link rel="stylesheet" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script defer src="../crates.js"></script><script defer src="../main.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../crossbeam_deque/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../crossbeam_deque/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"><a href="#">Crate crossbeam_deque</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.2.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul></div><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li></ul></div></section></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../crossbeam_deque/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">crossbeam_deque</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/crossbeam_deque/lib.rs.html#1-1045">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A concurrent work-stealing deque.</p>
+<p>The data structure can be thought of as a dynamically growable and shrinkable buffer that has
+two ends: bottom and top. A <a href="struct.Deque.html"><code>Deque</code></a> can <a href="struct.Deque.html#method.push"><code>push</code></a> elements into the bottom and <a href="struct.Deque.html#method.pop"><code>pop</code></a>
+elements from the bottom, but it can only <a href="struct.Deque.html#method.steal"><code>steal</code></a> elements from the top.</p>
+<p>A <a href="struct.Deque.html"><code>Deque</code></a> doesn’t implement <code>Sync</code> so it cannot be shared among multiple threads. However, it
+can create <a href="struct.Stealer.html"><code>Stealer</code></a>s, and those can be easily cloned, shared, and sent to other threads.
+<a href="struct.Stealer.html"><code>Stealer</code></a>s can only <a href="struct.Stealer.html#method.steal"><code>steal</code></a> elements from the top.</p>
+<p>Here’s a visualization of the data structure:</p>
+<div class="example-wrap"><pre class="language-text"><code>                   top
+                    _
+   Deque::steal -&gt; | | &lt;- Stealer::steal
+                   | |
+                   | |
+                   | |
+Deque::push/pop -&gt; |_|
+
+                 bottom</code></pre></div><h2 id="work-stealing-schedulers"><a href="#work-stealing-schedulers">Work-stealing schedulers</a></h2>
+<p>Usually, the data structure is used in work-stealing schedulers as follows.</p>
+<p>There is a number of threads. Each thread owns a <a href="struct.Deque.html"><code>Deque</code></a> and creates a <a href="struct.Stealer.html"><code>Stealer</code></a> that is
+shared among all other threads. Alternatively, it creates multiple <a href="struct.Stealer.html"><code>Stealer</code></a>s - one for each
+of the other threads.</p>
+<p>Then, all threads are executing in a loop. In the loop, each one attempts to <a href="struct.Deque.html#method.pop"><code>pop</code></a> some work
+from its own <a href="struct.Deque.html"><code>Deque</code></a>. But if it is empty, it attempts to <a href="struct.Stealer.html#method.steal"><code>steal</code></a> work from
+some other thread instead. When executing work (or being idle), a thread may produce more work,
+which gets <a href="struct.Deque.html#method.push"><code>push</code></a>ed into its <a href="struct.Deque.html"><code>Deque</code></a>.</p>
+<p>Of course, there are many variations of this strategy. For example, sometimes it may be
+beneficial for a thread to always <a href="struct.Deque.html#method.steal"><code>steal</code></a> work from the top of its deque
+instead of calling <a href="struct.Deque.html#method.pop"><code>pop</code></a> and taking it from the bottom.</p>
+<h2 id="examples"><a href="#examples">Examples</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>crossbeam_deque::{Deque, Steal};
+<span class="kw">use </span>std::thread;
+
+<span class="kw">let </span>d = Deque::new();
+<span class="kw">let </span>s = d.stealer();
+
+d.push(<span class="string">&#39;a&#39;</span>);
+d.push(<span class="string">&#39;b&#39;</span>);
+d.push(<span class="string">&#39;c&#39;</span>);
+
+<span class="macro">assert_eq!</span>(d.pop(), <span class="prelude-val">Some</span>(<span class="string">&#39;c&#39;</span>));
+drop(d);
+
+thread::spawn(<span class="kw">move </span>|| {
+    <span class="macro">assert_eq!</span>(s.steal(), Steal::Data(<span class="string">&#39;a&#39;</span>));
+    <span class="macro">assert_eq!</span>(s.steal(), Steal::Data(<span class="string">&#39;b&#39;</span>));
+}).join().unwrap();</code></pre></div>
+<h2 id="references"><a href="#references">References</a></h2>
+<p>The implementation is based on the following work:</p>
+<ol>
+<li><a href="https://dl.acm.org/citation.cfm?id=1073974">Chase and Lev. Dynamic circular work-stealing deque. SPAA 2005.</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2442524">Le, Pop, Cohen, and Nardelli. Correct and efficient work-stealing for weak memory models.
+PPoPP 2013.</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2509514">Norris and Demsky. CDSchecker: checking concurrent data structures written with C/C++
+atomics. OOPSLA 2013.</a></li>
+</ol>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Deque.html" title="crossbeam_deque::Deque struct">Deque</a></div><div class="item-right docblock-short">A concurrent work-stealing deque.</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Stealer.html" title="crossbeam_deque::Stealer struct">Stealer</a></div><div class="item-right docblock-short">A stealer that steals elements from the top of a deque.</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Steal.html" title="crossbeam_deque::Steal enum">Steal</a></div><div class="item-right docblock-short">Possible outcomes of a steal operation.</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="crossbeam_deque" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

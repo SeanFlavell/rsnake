@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["CombinedError","An error from creating textures with views at the same time."],["ResourceViewError","Error creating either a ShaderResourceView, or UnorderedAccessView."],["TargetViewError","Error creating either a RenderTargetView, or DepthStencilView."]],"trait":[["Factory","Overview"]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Key","Represent a keyboard key. Keycodes follows SDL http://wiki.libsdl.org/SDLKeycodeLookup"]],"struct":[["ModifierKey",""]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["CachePadded","Pads `T` to the length of a cache line."]]};

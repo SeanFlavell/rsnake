@@ -1,0 +1,11 @@
+C:\Users\boardwalk702\source\repos\rsnake2\.\debug\deps\arrayvec-e04eb78bd290862c.rmeta: C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs
+
+C:\Users\boardwalk702\source\repos\rsnake2\.\debug\deps\arrayvec-e04eb78bd290862c.d: C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs
+
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs:
+C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs:

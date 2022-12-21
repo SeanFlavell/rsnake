@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["MouseButton","Represent a mouse button."]],"trait":[["MouseCursorEvent","The position of the mouse cursor"],["MouseRelativeEvent","The relative movement of mouse cursor"],["MouseScrollEvent","The scroll of the mouse wheel"]]};

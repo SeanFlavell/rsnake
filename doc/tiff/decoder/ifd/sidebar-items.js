@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Tag","TIFF tag"],["Type",""],["Value",""]],"struct":[["Entry",""]],"type":[["Directory","Type representing an Image File Directory"]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["ICODecoder","An ico decoder"],["ICOEncoder","ICO encoder"]]};

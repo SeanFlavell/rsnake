@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Shape","The shape of the line"]],"struct":[["Line","A colored line with a default border radius"]]};

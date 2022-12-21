@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["TGADecoder","The representation of a TGA decoder"]]};

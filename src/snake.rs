@@ -15,6 +15,7 @@ pub struct Snake {
 }
 
 impl Snake {
+    /// creates a new snake
     pub fn new(head: Position) -> Self {
         let (x, y) = (head.x, head.y);
         let mut tail = LinkedList::new();
@@ -40,6 +41,8 @@ impl Snake {
     // pub fn grow(&mut self, x: u32, y: u32) {
     //     self.tail.push_back(Position { x, y })
     // }
+
+    /// updates the snakes direction, length and position.
     pub fn update(&mut self, width: u32, height: u32) {
         if self.tail.len() > 0 {
             self.tail.push_front(self.head.clone());
@@ -66,6 +69,7 @@ impl Snake {
         self.updated_tail_pos = true;
     }
 
+    /// draws the snakes head and its tail
     pub fn draw(&self, ctx: &Context, g: &mut G2d) {
         for block in self.tail.iter() {
             draw_block(&ctx, g, colors::SNAKE, block)
@@ -74,6 +78,7 @@ impl Snake {
         draw_snake_head(&ctx, g, colors::SNAKE, &self.head, &self.direction);
     }
 
+    /// sets the direction the snake is pointing
     pub fn set_dir(&mut self, dir: Direction) {
         if dir == self.direction.opposite() || !self.updated_tail_pos {
             return;
@@ -83,10 +88,12 @@ impl Snake {
         self.updated_tail_pos = false;
     }
 
+    /// returns the position of the snakes head
     pub fn get_head_pos(&self) -> &Position {
         &self.head
     }
 
+    /// returns the length of the tail
     pub fn get_len(&self) -> usize {
         &self.tail.len() - INITIAL_SNAKE_TAIL_LENGTH
     }
@@ -104,6 +111,7 @@ impl Snake {
     // !self.is_tail_overlapping()
     // }
 
+    ///returns a bool showing that the head and the tail are currently overlapping
     pub fn is_tail_overlapping(&self) -> bool {
         for pos in self.tail.iter() {
             if *pos == self.head {
@@ -114,6 +122,7 @@ impl Snake {
         false
     }
 
+    /// returns a bool showing whether the head and the tail will overlap next position
     pub fn will_tail_overlapp(&self) -> bool {
         let next = self.next_head_pos();
 
@@ -126,6 +135,7 @@ impl Snake {
         false
     }
 
+    /// Increases the length of the snake ehwn called
     pub fn grow(&mut self) {
         let last = match self.tail.back() {
             Some(pos) => pos.clone(),
@@ -135,6 +145,7 @@ impl Snake {
         self.tail.push_back(last);
     }
 
+    /// returns the next position of the head
     fn next_head_pos(&self) -> Position {
         let mut pos = self.head.clone();
 

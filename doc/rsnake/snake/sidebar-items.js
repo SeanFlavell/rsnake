@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["INITIAL_SNAKE_TAIL_LENGTH",""]],"struct":[["Snake",""]]};

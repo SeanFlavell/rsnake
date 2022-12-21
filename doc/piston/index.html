@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A modular game engine written in Rust."><meta name="keywords" content="rust, rustlang, rust-lang, piston"><title>piston - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../normalize.css"><link rel="stylesheet" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../ayu.css" disabled><link rel="stylesheet" href="../dark.css" disabled><link rel="stylesheet" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script defer src="../crates.js"></script><script defer src="../main.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../piston/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../piston/index.html"><div class="logo-container"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></div></a><h2 class="location"><a href="#">Crate piston</a></h2><div class="sidebar-elems"><div class="block"><ul><li class="version">Version 0.42.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul></div><section><div class="block"><ul><li><a href="#reexports">Re-exports</a></li></ul></div></section></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../piston/index.html"><img class="rust-logo" src="../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">piston</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/piston/lib.rs.html#1-88">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A modular game engine written in Rust.</p>
+<p>This is the core library of the Piston Game engine.
+The <code>Piston</code> core library reexports the core modules.</p>
+<p>If you are looking for a convenient window wrapper,
+see <a href="https://github.com/pistondevelopers/piston_window">piston_window</a>.</p>
+<p>For examples, see <a href="https://github.com/pistondevelopers/piston-examples">piston-examples</a>.</p>
+<p>For more information and an overview, see <a href="https://github.com/pistondevelopers/piston">Piston’s README in the core repository</a>.</p>
+<h4 id="about-piston-as-a-game-engine"><a href="#about-piston-as-a-game-engine">About Piston as a Game Engine</a></h4>
+<p>Piston is a modular game engine with a minimal core abstraction.
+The core connects input events, window and event loop.</p>
+<p>Piston is designed for optimal modularity,
+making it optional to even use the core modules in many cases.
+The goal is to have as little abstraction as possible,
+while making larger libraries as independent as possible.
+The motivation is to encourage diversity and experimentation with various abstractions,
+without getting tied up to a fixed set of platforms, abstractions or vendors.
+You can combine Piston with any other library in Rust’s ecosystem.
+This design has worked very well so far.</p>
+<p>For example (a few libraries, there are many more):</p>
+<ul>
+<li><a href="https://github.com/pistondevelopers/image">Image</a> library is standalone
+from both the core and the 2D graphics library,
+only connected through the 2D graphics backends.</li>
+<li><a href="https://github.com/pistondevelopers/graphics">Piston’s 2D graphics</a> is optional and can be used without a window backend.
+The window backend can be used without a 2D graphics backend, and so on.</li>
+<li>For image processing, see <a href="https://github.com/pistondevelopers/imageproc">Imageproc</a>.</li>
+<li><a href="https://github.com/pistondevelopers/dyon">Dyon</a> is a Rusty dynamically typed scripting language,
+using a lifetime checker without garbage collection.</li>
+</ul>
+<p>For more information and an overview, see <a href="https://github.com/pistondevelopers/piston">Piston’s README in the core repository</a>.</p>
+<p>When writing a library, please depend directly on the core module needed.
+This makes it less likely that the library will break.</p>
+<p>When writing an application, it is acceptable to use the <code>Piston</code> core.
+To use it you usually need a window backend:</p>
+<ul>
+<li><a href="https://github.com/pistondevelopers/glutin_window">pistoncore-glutin_window</a></li>
+<li><a href="https://github.com/pistondevelopers/sdl2_window">pistoncore-sdl2_window</a></li>
+<li><a href="https://github.com/pistondevelopers/glfw_window">pistoncore-glfw_window</a></li>
+</ul>
+<p>There are a <a href="https://crates.io/search?q=piston%20window">few other window backends as well</a>.</p>
+<p>Plus a 2D graphics backend (optional):</p>
+<ul>
+<li><a href="https://github.com/pistondevelopers/opengl_graphics">piston2d-opengl_graphics</a></li>
+<li><a href="https://github.com/pistondevelopers/gfx_graphics">piston2d-gfx_graphics</a></li>
+<li><a href="https://github.com/pistondevelopers/glium_graphics">piston2d-glium_graphics</a></li>
+</ul>
+<p>There are a <a href="https://crates.io/search?q=piston%20graphics">few other graphics backends as well</a>.</p>
+<p>You will find examples of how to get started in each 2D graphics backend repository.</p>
+<h4 id="about-piston-as-a-project"><a href="#about-piston-as-a-project">About Piston as a Project</a></h4>
+<p>The Piston project is a huge collaboration across many projects,
+mainly focused on maintenance of libraries and research.
+Since this has been going on since 2014, there is too much out there
+to summarize here, but rougly the project is organized into two open source organizations:</p>
+<ul>
+<li><a href="https://github.com/pistondevelopers/">PistonDevelopers</a> - everything game engine related</li>
+<li><a href="https://github.com/advancedresearch/">AdvancedResearch</a> - everything advanced math related</li>
+</ul>
+<p>In addition we collaborate across organizations with other projects, mainly:</p>
+<ul>
+<li><a href="https://github.com/gfx-rs/">Gfx-rs</a> - everything 3D graphics related</li>
+<li><a href="https://github.com/rustaudio">RustAudio</a> - everything audio related</li>
+</ul>
+<p>In addition there are many other projects and organizations.</p>
+<p>For more information and an overview, see <a href="https://github.com/pistondevelopers/piston">Piston’s README in the core repository</a>.</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2><div class="item-table"><div class="item-row"><div class="item-left"><code>pub extern crate <a class="mod" href="../event_loop/index.html" title="mod event_loop">event_loop</a>;</code></div></div><div class="item-row"><div class="item-left"><code>pub extern crate <a class="mod" href="../input/index.html" title="mod input">input</a>;</code></div></div><div class="item-row"><div class="item-left"><code>pub extern crate <a class="mod" href="../window/index.html" title="mod window">window</a>;</code></div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="piston" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

@@ -5,6 +5,7 @@ use piston_window::{rectangle, Context, G2d};
 
 pub const BLOCK_SIZE: f64 = 25.0;
 
+/// used to draw blocks in the game
 pub fn draw_block(ctx: &Context, g: &mut G2d, c: Color, pos: &Position) {
     rectangle(
         c,
@@ -18,7 +19,7 @@ pub fn draw_block(ctx: &Context, g: &mut G2d, c: Color, pos: &Position) {
         g,
     );
 }
-
+/// draws the head of the snake and the eyes using the colors SNAKE for the head and BACKGROUND for the eyes. Also changes the position of the eyes depending on the direction of the snake
 pub fn draw_snake_head(ctx: &Context, g: &mut G2d, c: Color, pos: &Position, dir: &Direction) {
     draw_block(ctx, g, c, pos);
 
@@ -53,8 +54,8 @@ pub fn draw_snake_head(ctx: &Context, g: &mut G2d, c: Color, pos: &Position, dir
     }
 }
 
-pub fn draw_fruit(ctx: &Context, g: &mut G2d, c: Color, pos: &Position) {}
 
+/// used to draw the red semi-transparent overlay used when the user loses 
 pub fn draw_overlay(ctx: &Context, g: &mut G2d, c: Color, size: (u32, u32)) {
     rectangle(
         c,

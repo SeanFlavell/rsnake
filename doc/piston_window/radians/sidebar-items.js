@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Radians","Useful constants for radians."]]};

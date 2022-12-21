@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A convenience extension to [`SeedableRng`] allowing construction from fresh entropy. This trait is automatically implemented for any PRNG implementing [`SeedableRng`] and is not intended to be implemented by users."><meta name="keywords" content="rust, rustlang, rust-lang, FromEntropy"><title>FromEntropy in rand - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../normalize.css"><link rel="stylesheet" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../ayu.css" disabled><link rel="stylesheet" href="../dark.css" disabled><link rel="stylesheet" href="../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../storage.js"></script><script defer src="sidebar-items.js"></script><script defer src="../main.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" href="https://www.rust-lang.org/favicon.ico"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../rand/index.html"><div class="logo-container"><img src="https://www.rust-lang.org/logos/rust-logo-128x128-blk.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../rand/index.html"><div class="logo-container">
+                    <img src="https://www.rust-lang.org/logos/rust-logo-128x128-blk.png" alt="logo"></div></a><h2 class="location"><a href="#">FromEntropy</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#required-methods">Required Methods</a></h3><ul><li><a href="#tymethod.from_entropy">from_entropy</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#implementors">Implementors</a></h3></div></section><h2 class="location"><a href="index.html">In rand</a></h2></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../rand/index.html">
+                        <img src="https://www.rust-lang.org/logos/rust-logo-128x128-blk.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn"><span class="in-band">Trait <a href="index.html">rand</a>::<wbr><a class="trait" href="#">FromEntropy</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../src/rand/lib.rs.html#566-597">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust trait"><code>pub trait FromEntropy: <a class="trait" href="trait.SeedableRng.html" title="trait rand::SeedableRng">SeedableRng</a> {
+    fn <a href="#tymethod.from_entropy" class="fnname">from_entropy</a>() -&gt; Self;
+}</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>A convenience extension to <a href="trait.SeedableRng.html" title="SeedableRng"><code>SeedableRng</code></a> allowing construction from fresh
+entropy. This trait is automatically implemented for any PRNG implementing
+<a href="trait.SeedableRng.html" title="SeedableRng"><code>SeedableRng</code></a> and is not intended to be implemented by users.</p>
+<p>This is equivalent to using <code>SeedableRng::from_rng(EntropyRng::new())</code> then
+unwrapping the result.</p>
+<p>Since this is convenient and secure, it is the recommended way to create
+PRNGs, though two alternatives may be considered:</p>
+<ul>
+<li>Deterministic creation using <a href="trait.SeedableRng.html#tymethod.from_seed" title="SeedableRng::from_seed"><code>SeedableRng::from_seed</code></a> with a fixed seed</li>
+<li>Seeding from <code>thread_rng</code>: <code>SeedableRng::from_rng(thread_rng())?</code>;
+this will usually be faster and should also be secure, but requires
+trusting one extra component.</li>
+</ul>
+<h3 id="example"><a href="#example">Example</a></h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>rand::{Rng, FromEntropy};
+<span class="kw">use </span>rand::rngs::StdRng;
+
+<span class="kw">let </span><span class="kw-2">mut </span>rng = StdRng::from_entropy();
+<span class="macro">println!</span>(<span class="string">&quot;Random die roll: {}&quot;</span>, rng.gen_range(<span class="number">1</span>, <span class="number">7</span>));</code></pre></div>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><div id="tymethod.from_entropy" class="method has-srclink"><a class="srclink rightside" href="../src/rand/lib.rs.html#596">source</a><h4 class="code-header">fn <a href="#tymethod.from_entropy" class="fnname">from_entropy</a>() -&gt; Self</h4></div></summary><div class="docblock"><p>Creates a new instance, automatically seeded with fresh entropy.</p>
+<p>Normally this will use <code>OsRng</code>, but if that fails <code>JitterRng</code> will be
+used instead. Both should be suitable for cryptography. It is possible
+that both entropy sources will fail though unlikely; failures would
+almost certainly be platform limitations or build issues, i.e. most
+applications targetting PC/mobile platforms should not need to worry
+about this failing.</p>
+<h5 id="panics"><a href="#panics">Panics</a></h5>
+<p>If all entropy sources fail this will panic. If you need to handle
+errors, use the following code, equivalent aside from error handling:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>rand::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>rand::rngs::EntropyRng;
+
+<span class="comment">// This uses StdRng, but is valid for any R: SeedableRng
+</span><span class="kw">let </span><span class="kw-2">mut </span>rng = StdRng::from_rng(EntropyRng::new())<span class="question-mark">?</span>;
+
+<span class="macro">println!</span>(<span class="string">&quot;random number: {}&quot;</span>, rng.gen_range(<span class="number">1</span>, <span class="number">10</span>));
+</code></pre></div>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><section id="impl-FromEntropy-for-R" class="impl has-srclink"><a class="srclink rightside" href="../src/rand/lib.rs.html#600-605">source</a><a href="#impl-FromEntropy-for-R" class="anchor"></a><h3 class="code-header in-band">impl&lt;R:&nbsp;<a class="trait" href="trait.SeedableRng.html" title="trait rand::SeedableRng">SeedableRng</a>&gt; <a class="trait" href="trait.FromEntropy.html" title="trait rand::FromEntropy">FromEntropy</a> for R</h3></section></div><script src="../implementors/rand/trait.FromEntropy.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../" data-current-crate="rand" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

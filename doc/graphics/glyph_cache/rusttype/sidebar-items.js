@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["GlyphCache","A struct used for caching rendered font."]]};

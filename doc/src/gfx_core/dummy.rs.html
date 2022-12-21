@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `C:\Users\boardwalk702\.cargo\registry\src\github.com-1ecc6299db9ec823\gfx_core-0.8.3\src\dummy.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>dummy.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gfx_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gfx_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gfx_core/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2015 The Gfx-rs Developers.
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+</span><span class="doccomment">//! Dummy backend implementation to test the code for compile errors
+//! outside of the graphics development environment.
+
+</span><span class="kw">use </span>{Capabilities, Device, SubmissionResult, Resources, IndexType, VertexCount};
+<span class="kw">use </span>{state, target, handle, mapping, pso, shade, texture};
+<span class="kw">use </span>command::{<span class="self">self</span>, AccessInfo};
+
+<span class="doccomment">/// Dummy device which does minimal work, just to allow testing
+/// gfx-rs apps for compilation.
+</span><span class="kw">pub struct </span>DummyDevice {
+    capabilities: Capabilities,
+}
+
+<span class="doccomment">/// Dummy resources phantom type
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+</span><span class="kw">pub enum </span>DummyResources {}
+
+<span class="kw">impl </span>Resources <span class="kw">for </span>DummyResources {
+    <span class="kw">type </span>Buffer               = ();
+    <span class="kw">type </span>Shader               = ();
+    <span class="kw">type </span>Program              = ();
+    <span class="kw">type </span>PipelineStateObject  = ();
+    <span class="kw">type </span>Texture              = ();
+    <span class="kw">type </span>ShaderResourceView   = ();
+    <span class="kw">type </span>UnorderedAccessView  = ();
+    <span class="kw">type </span>RenderTargetView     = ();
+    <span class="kw">type </span>DepthStencilView     = ();
+    <span class="kw">type </span>Sampler              = ();
+    <span class="kw">type </span>Fence                = DummyFence;
+    <span class="kw">type </span>Mapping              = DummyMapping;
+}
+
+<span class="doccomment">/// Dummy fence that does nothing.
+</span><span class="attribute">#[derive(Clone, Debug, Eq, Hash, PartialEq)]
+</span><span class="kw">pub struct </span>DummyFence;
+
+<span class="doccomment">/// Dummy mapping which will crash on use.
+</span><span class="attribute">#[derive(Clone, Debug, Eq, Hash, PartialEq)]
+</span><span class="kw">pub struct </span>DummyMapping;
+
+<span class="kw">impl </span>mapping::Gate&lt;DummyResources&gt; <span class="kw">for </span>DummyMapping {
+    <span class="kw">unsafe fn </span>set&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, _index: usize, _val: T) { <span class="macro">unimplemented!</span>() }
+    <span class="kw">unsafe fn </span>slice&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, T&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, _len: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>[T] { <span class="macro">unimplemented!</span>() }
+    <span class="kw">unsafe fn </span>mut_slice&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, T&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, _len: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>[T] { <span class="macro">unimplemented!</span>() }
+}
+
+<span class="kw">impl </span>DummyDevice {
+    <span class="doccomment">/// Create a new dummy device
+    </span><span class="kw">pub fn </span>new() -&gt; DummyDevice {
+        <span class="kw">let </span>caps = Capabilities {
+            max_vertex_count: <span class="number">0</span>,
+            max_index_count: <span class="number">0</span>,
+            max_texture_size: <span class="number">0</span>,
+            max_patch_size: <span class="number">0</span>,
+            instance_base_supported: <span class="bool-val">false</span>,
+            instance_call_supported: <span class="bool-val">false</span>,
+            instance_rate_supported: <span class="bool-val">false</span>,
+            vertex_base_supported: <span class="bool-val">false</span>,
+            srgb_color_supported: <span class="bool-val">false</span>,
+            constant_buffer_supported: <span class="bool-val">false</span>,
+            unordered_access_view_supported: <span class="bool-val">false</span>,
+            separate_blending_slots_supported: <span class="bool-val">false</span>,
+            copy_buffer_supported: <span class="bool-val">false</span>,
+        };
+        DummyDevice {
+            capabilities: caps,
+        }
+    }
+}
+
+<span class="doccomment">/// Dummy command buffer, which ignores all the calls.
+</span><span class="kw">pub struct </span>DummyCommandBuffer;
+<span class="kw">impl </span>command::Buffer&lt;DummyResources&gt; <span class="kw">for </span>DummyCommandBuffer {
+    <span class="kw">fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {}
+    <span class="kw">fn </span>bind_pipeline_state(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: ()) {}
+    <span class="kw">fn </span>bind_vertex_buffers(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: pso::VertexBufferSet&lt;DummyResources&gt;) {}
+    <span class="kw">fn </span>bind_constant_buffers(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>[pso::ConstantBufferParam&lt;DummyResources&gt;]) {}
+    <span class="kw">fn </span>bind_global_constant(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: shade::Location, <span class="kw">_</span>: shade::UniformValue) {}
+    <span class="kw">fn </span>bind_resource_views(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>[pso::ResourceViewParam&lt;DummyResources&gt;]) {}
+    <span class="kw">fn </span>bind_unordered_views(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>[pso::UnorderedViewParam&lt;DummyResources&gt;]) {}
+    <span class="kw">fn </span>bind_samplers(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>[pso::SamplerParam&lt;DummyResources&gt;]) {}
+    <span class="kw">fn </span>bind_pixel_targets(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: pso::PixelTargetSet&lt;DummyResources&gt;) {}
+    <span class="kw">fn </span>bind_index(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: IndexType) {}
+    <span class="kw">fn </span>set_scissor(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: target::Rect) {}
+    <span class="kw">fn </span>set_ref_values(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: state::RefValues) {}
+    <span class="kw">fn </span>copy_buffer(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: (),
+                   <span class="kw">_</span>: usize, <span class="kw">_</span>: usize,
+                   <span class="kw">_</span>: usize) {}
+    <span class="kw">fn </span>copy_buffer_to_texture(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: usize, <span class="kw">_</span>: texture::TextureCopyRegion&lt;()&gt;) {}
+    <span class="kw">fn </span>copy_texture_to_buffer(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: texture::TextureCopyRegion&lt;()&gt;, <span class="kw">_</span>: (), <span class="kw">_</span>: usize) {}
+    <span class="kw">fn </span>copy_texture_to_texture(<span class="kw-2">&amp;mut </span><span class="self">self</span>,
+                               <span class="kw">_</span>: texture::TextureCopyRegion&lt;()&gt;,
+                               <span class="kw">_</span>: texture::TextureCopyRegion&lt;()&gt;) {}
+    <span class="kw">fn </span>update_buffer(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: <span class="kw-2">&amp;</span>[u8], <span class="kw">_</span>: usize) {}
+    <span class="kw">fn </span>update_texture(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: texture::TextureCopyRegion&lt;()&gt;, <span class="kw">_</span>: <span class="kw-2">&amp;</span>[u8]) {}
+    <span class="kw">fn </span>generate_mipmap(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: ()) {}
+    <span class="kw">fn </span>clear_color(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: command::ClearColor) {}
+    <span class="kw">fn </span>clear_depth_stencil(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: (), <span class="kw">_</span>: <span class="prelude-ty">Option</span>&lt;target::Depth&gt;,
+                           <span class="kw">_</span>: <span class="prelude-ty">Option</span>&lt;target::Stencil&gt;) {}
+    <span class="kw">fn </span>call_draw(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: VertexCount, <span class="kw">_</span>: VertexCount, <span class="kw">_</span>: <span class="prelude-ty">Option</span>&lt;command::InstanceParams&gt;) {}
+    <span class="kw">fn </span>call_draw_indexed(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: VertexCount, <span class="kw">_</span>: VertexCount,
+                         <span class="kw">_</span>: VertexCount, <span class="kw">_</span>: <span class="prelude-ty">Option</span>&lt;command::InstanceParams&gt;) {}
+}
+
+<span class="kw">impl </span>Device <span class="kw">for </span>DummyDevice {
+    <span class="kw">type </span>Resources = DummyResources;
+    <span class="kw">type </span>CommandBuffer = DummyCommandBuffer;
+
+    <span class="kw">fn </span>get_capabilities(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Capabilities {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.capabilities
+    }
+    <span class="kw">fn </span>pin_submitted_resources(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>handle::Manager&lt;DummyResources&gt;) {}
+    <span class="kw">fn </span>submit(<span class="kw-2">&amp;mut </span><span class="self">self</span>,
+              <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>DummyCommandBuffer,
+              <span class="kw">_</span>: <span class="kw-2">&amp;</span>AccessInfo&lt;<span class="self">Self</span>::Resources&gt;)
+              -&gt; SubmissionResult&lt;()&gt; {
+        <span class="macro">unimplemented!</span>()
+    }
+
+    <span class="kw">fn </span>fenced_submit(<span class="kw-2">&amp;mut </span><span class="self">self</span>,
+                     <span class="kw">_</span>: <span class="kw-2">&amp;mut </span><span class="self">Self</span>::CommandBuffer,
+                     <span class="kw">_</span>: <span class="kw-2">&amp;</span>AccessInfo&lt;<span class="self">Self</span>::Resources&gt;,
+                     _after: <span class="prelude-ty">Option</span>&lt;handle::Fence&lt;<span class="self">Self</span>::Resources&gt;&gt;)
+                     -&gt; SubmissionResult&lt;handle::Fence&lt;<span class="self">Self</span>::Resources&gt;&gt; {
+        <span class="macro">unimplemented!</span>()
+    }
+
+    <span class="kw">fn </span>wait_fence(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span>handle::Fence&lt;<span class="self">Self</span>::Resources&gt;) {
+        <span class="macro">unimplemented!</span>()
+    }
+
+    <span class="kw">fn </span>cleanup(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {}
+}
+</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gfx_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

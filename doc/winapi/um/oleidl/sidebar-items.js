@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["DD_DEFDRAGDELAY",""],["DD_DEFDRAGMINDIST",""],["DD_DEFSCROLLDELAY",""],["DD_DEFSCROLLINSET",""],["DD_DEFSCROLLINTERVAL",""],["DROPEFFECT_COPY",""],["DROPEFFECT_LINK",""],["DROPEFFECT_MOVE",""],["DROPEFFECT_NONE",""],["DROPEFFECT_SCROLL",""],["MK_ALT",""]],"struct":[["IDropTarget",""],["IDropTargetVtbl",""]],"type":[["LPDROPTARGET",""]]};
